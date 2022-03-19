@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<title> {% block title %} BIO-SALAD | Contac Us {% endblock %}</title>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+
+<style>
+    .contact-info {
+        position: relative;
+        top: 40px;
+    }
+
+    .contact-info h3{
+        font-family: 'Roboto Slab', serif;
+        color: #06061A;
+        position: relative;
+        top: 30px;
+    }
+
+    .contact-info .email-address {
+        display: inline-block;
+    }
+
+    .contact-info .email-icon {
+        display: inline-block;
+    }
+
+    .contact-info .email-address a{
+        position: relative;
+        top: 10px;
+        font-family: 'Lato', sans-serif;
+        font-size: 13px;
+        color: #041C50;
+        /*bottom: 24px;*/
+    }
+
+    .contact-info .email-address p{
+        position: relative;
+        top: 42px;
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        /*bottom: 24px;*/
+    }
+
+    .contact-info .email-address{
+        position: relative;
+        left: 15px;
+        /*bottom: 24px;*/
+    }
+
+    .contact-info #ideas {
+        position: relative;
+        /*bottom: 30px;*/
+        /*top: 50px;*/
+        padding-top: 50px;
+    }
+
+    .contact-info #ideas p{
+        color: #373434;
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    @media screen and (max-width: 800px) {
+        .contact-info .email-address {
+            position: relative;
+            bottom: 70px;
+            right: 20px;
+        }
+
+        .contact-info .email-address a{
+            position: relative;
+            left: 15px;
+        }
+
+        .contact-info .email-address p{
+            position: relative;
+            left: 15px;
+        }
+
+        .contact-info .email-icon img{
+           position: relative;
+           top: 5px;
+           right: 5px;
+        }
+
+        #contact-image {
+            display: none;
+        }
+
+        .share-ideas-section {
+            display: block !important;
+        }
+
+        .contact-info #ideas {
+            position: relative;
+            bottom: 80px;
+        }
+    }
+</style>
+
+<div id="content" class="main-container">
+    <div class="header-callout">
+        <section class="page-title-section bg-secondary ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 class="page-title">Contact Us</span></h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="contact-info">
+                    <h3>How Can We Help You?</h3>
+                    <br>
+                    <div class="contacts">
+                        <p>For any queries related to bioSALAD tool email:</p>
+                        <div class="email-icon">
+                            <img src="https://img.icons8.com/ultraviolet/28/000000/email-open--v1.png"/>
+                        </div>
+                        <div class="email-address">
+                            <p class="small">Send us an email</p>
+                            <a class="small" href="mailto:aditya@kletech.ac.in; rohit.vaidyanathan@kletech.ac.in">aditya@kletech.ac.in; rohit.vaidyanathan@kletech.ac.in</a>
+                        </div>
+                        <div id="ideas">
+                            <p>We call upon researchers (any domain) to share their ideas for suggestions/improvement of bioSALAD. You can get in touch anytime with your ideas through mail.</p>
+                        </div>
+                    </div>
+                    <!--<div class="share-ideas-section">
+                        <div id="ideas">
+                            <p>We call upon researchers (any domain) to share their ideas for suggestions/improvement of bioSALAD. You can get in touch anytime with your ideas through mail.</p>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-sm-6" id="contact-image">
+                <img src="/static/images/illustration@2x-85cce263ddf60035c6702cc57dd1fc2a-4d4c8.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>    
+
+{% endblock %}

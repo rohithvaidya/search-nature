@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<title>{% block title %} BIO-SALAD | Results for "{{ request.GET.q }}" {% endblock %}</title>
+
+<style>
+    .card {
+        background: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+    }
+    #icon {
+        color: #745cf9;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-10px;
+    }
+</style>
+
+{% if lookups %}
+<div id="content" class="main-container">
+    <div class="header-callout">
+        <section class="page-title-section bg-secondary ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 class="page-title">Search Results for: <span>"{{ request.GET.q }}"</span></h3>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+    </div>
+    <section class="content-area ">
+    <div id="main" class="container" role="main" style="padding-top: 80px;">
+    <div class="row">
+    <section id="primary" class="content-area col-md-8 mb-xs-24 sidebar-right">
+        <main id="main" class="site-main grid" role="main">
+        {% for article in lookups %}
+        <article class="card">
+            <img src="{{ article.article_image.url }}" alt="{{ article.title }}">
+            <div class="text">
+                <div class="card-header">
+                    <h3>{{ article.title }}</h3>
+                </div>
+                <div class="card-author" style="position: relative; bottom: 15px;">
+                    <i class="fas fa-user-tie" style="color: #745cf9; font-size: 18px;"></i>
+                    <p style="display: inline-block; font-weight: 600; padding-left: 5px;">Author: {{ article.author }}</p>
+                    
+                </div>
+                <div class="card-stats" style="position: relative; bottom: 30px;">
+                    <i class="far fa-hand-pointer" style="color: #745cf9; font-size: 18px;"></i>
+                    <p style="display: inline-block; font-weight: 600; padding-left: 5px;">Clicked: {{ article.clicks }}</p>
+                </div>
+                <div class="card-body" style="position: relative; bottom: 30px;">
+                    <p>{{ article.short_description }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'article_view' article.slug %}" class="btn btn-block">Read More</a>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+        </main>
+    </section>
+    <aside id="secondary" class="widget-area col-md-4" role="complementary">
+        <!--<div id="search-2" class="widget widget_search">
+            {% if user.is_authenticated %}
+            <form role="search" method="GET" class="search-form" action="{% url 'home' %}">
+                {% csrf_token %}
+                <label class="screen-reader-text" for="s">Search for:</label>
+                <input type="text" placeholder="Type Here" value="{{ request.GET.q }}" name="q" id="q" />
+                <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">Search</span></button>
+            </form>
+            {% else %}
+            <form role="search" method="GET" class="search-form" action="">
+                <label class="screen-reader-text" for="s">Search for:</label>
+                <input type="text" style="pointer-events: none;" placeholder="Type Here" value="You need to login to search for content or confirm your account!" name="" id="q" disabled/>
+                <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">Search</span></button>
+            </form>
+            {% endif %}
+        </div>-->
+        <div id="top-posts-4" class="widget widget_top-posts">
+            <h2 class="widget-title">Top Articles</h2>
+            <ul class='widgets-list-layout no-grav'>
+                {% for article in top_articles %}
+                <li>
+                    <a href="{% url 'article_view' article.slug %}" title="{{ article.title }}" class="bump-view" data-bump-view="tp">
+                        <img width="40" height="40" src="{{ article.article_image.url }}" alt="Template: More Tag" data-pin-nopin="true" class="widgets-list-layout-blavatar" />
+                    </a>
+                    <div class="widgets-list-layout-links" style="position: relative; right: 40px;">
+                        <a href="{% url 'article_view' article.slug %}" title="{{ article.title }}" class="bump-view" data-bump-view="tp">{{ article.title }}</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="recent-posts-2" class="widget widget_recent_entries">
+            <h2 class="widget-title">Recent Posts</h2>
+            <ul>
+                {% for article in recent_articles %}
+                <li>
+                    <a href="#">{{ article.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>
+            <ul>
+                {% for category in categories %}
+                <li class="cat-item cat-item-19">
+                    <a href="" title="{{ category.title }}">{{ category.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+    </div>
+    </div>
+    </section>
+    <div class="footer-callout">
+    </div>
+</div>
+{% else %}
+
+<div id="content" class="main-container">
+    <div class="header-callout">
+    <section class="page-title-section bg-secondary ">
+    <div class="container">
+    <div class="row">
+    <div class="col-xs-12">
+    <h3 class="page-title">Search Results for: <span>"{{ request.GET.q }}"</span></h3>
+    </div>
+    </div>
+    
+    </div>
+    
+    </section>
+    </div>
+    <section class="content-area ">
+    <div id="main" class="container" role="main" style="padding-top: 80px;">
+    <div class="row">
+    <section id="primary" class="content-area col-md-8 mb-xs-24 sidebar-right">
+        <main id="main" class="site-main" role="main" style="text-align: center;">
+            <div class="">
+                <div style="border-radius:200px; height:200px; width:200px; margin:0 auto;">
+                    <i id="icon" class="fas fa-exclamation-circle"></i>
+                </div>
+                <h1>Sorry</h1> 
+                <p style="font-size: 18px;">We couldn't find any result for your search.<br/> Please try again!</a></p>
+            </div>
+        </main>
+        <br>
+        <br>
+    </section>
+    <aside id="secondary" class="widget-area col-md-4" role="complementary">
+        <div id="search-2" class="widget widget_search">
+            {% if user.is_authenticated %}
+            <form role="search" method="GET" class="search-form" action="">
+                {% csrf_token %}
+                <label class="screen-reader-text" for="s">Search for:</label>
+                <input type="text" placeholder="Type Here" value="{{ request.GET.q }}" name="q" id="q" />
+                <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">Search</span></button>
+            </form>
+            {% else %}
+            <form role="search" method="GET" class="search-form" action="">
+                <label class="screen-reader-text" for="s">Search for:</label>
+                <input type="text" style="pointer-events: none;" placeholder="Type Here" value="You need to login to search for content or confirm your account!" name="" id="q" disabled/>
+                <button type="submit" class="searchsubmit"><i class="fa fa-search" aria-hidden="true"></i><span class="screen-reader-text">Search</span></button>
+            </form>
+            {% endif %}
+        </div>
+        <div id="top-posts-4" class="widget widget_top-posts">
+            <h2 class="widget-title">Top Articles</h2>
+            <ul class='widgets-list-layout no-grav'>
+                {% for article in top_articles %}
+                <li>
+                    <a href="{% url 'article_view' article.slug %}" title="{{ article.title }}" class="bump-view" data-bump-view="tp">
+                        <img width="40" height="40" src="{{ article.article_image.url }}" alt="Template: More Tag" data-pin-nopin="true" class="widgets-list-layout-blavatar" />
+                    </a>
+                    <div class="widgets-list-layout-links" style="position: relative; right: 40px;">
+                        <a href="{% url 'article_view' article.slug %}" title="{{ article.title }}" class="bump-view" data-bump-view="tp">{{ article.title }}</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="recent-posts-2" class="widget widget_recent_entries">
+            <h2 class="widget-title">Recent Posts</h2>
+            <ul>
+                {% for article in recent_articles %}
+                <li>
+                    <a href="#">{{ article.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>
+            <ul>
+                {% for category in categories %}
+                <li class="cat-item cat-item-19">
+                    <a href="" title="{{ category.title }}">{{ category.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+    </div>
+    </div>
+    </section>
+    <div class="footer-callout">
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

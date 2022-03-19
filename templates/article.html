@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<title>{% block title %} BIO-SALAD | {{ article }} {% endblock %}</title>
+
+<div id="content" class="main-container">
+    <div class="header-callout">
+        <section class="page-title-section bg-secondary ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 class="page-title">{{ article.title }}</h3>
+                    </div>
+                </div>
+            
+            </div>
+        
+        </section>
+    </div>
+    <section class="content-area ">
+    <div id="main" class="container" role="main" style="padding-top: 80px;">
+    <div class="row">
+    <div id="primary" class="col-md-8 mb-xs-24 sidebar-right">
+    <article id="post-1757" class="post-content post-grid-wide post-1757 jetpack-portfolio type-jetpack-portfolio status-publish has-post-thumbnail hentry">
+        <header class="entry-header nolist">
+            <a href="">
+            <img width="502" height="350" src="{{ article.article_image.url }}" class="attachment-shapely-featured size-shapely-featured wp-post-image" alt="" srcset="{{ article.article_image.url }} 3800w, {{ article.article_image.url }} 300w, {{ article.article_image.url }} 768w,{{ article.article_image.url }} 1024w" sizes="(max-width: 502px) 100vw, 502px" /> </a>
+        </header>
+    <div class="entry-content">
+    <h2 class="post-title">
+    <a href="">{{ article.title }}</a>
+    </h2>
+    <div class="entry-meta">
+        <ul class="post-meta">
+            <li><span class="posted-on"><time class="entry-date published" datetime="2016-03-17T14:01:39+00:00">{{ article.created }}</time><time class="updated" datetime="2020-10-21T13:37:42+00:00">October 21, 2020</time></span></li>
+            <li><span>by <a href="" title="{{ article.author }}">{{ article.author }}</a></span></li>
+        </ul>
+    </div>
+    <div class="shapely-content dropcaps-content">
+        <p>{{ article.text_field }}</p>
+    </div>
+    </div>    
+    <div class="shapely-related-posts"><div class="row"><div class="col-lg-11 col-sm-10 col-xs-12 shapely-related-posts-title"><h3><span>Related projects</span></h3></div></div>
+        <div class="shapely-carousel-navigation hidden-xs">
+            <ul class="shapely-carousel-arrows clearfix">
+                <li>
+                    <a href="#" class="shapely-owl-prev fa fa-angle-left"></a>
+                </li>
+                <li>
+                    <a href="#" class="shapely-owl-next fa fa-angle-right"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="owlCarousel owl-carousel owl-theme" data-slider-id="1757" id="owlCarousel-1757" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false">
+            {% for article in related_top_articles %}
+            <div class="item">
+                <a href="{% url 'article_view' article.slug %}" class="related-item-thumbnail" style="background-image: url( {{ article.article_image.url }} )">
+                    <img width="350" height="244" src="{{ article.article_image.url }}" class="attachment-shapely-grid size-shapely-grid wp-post-image" alt="" loading="lazy" 
+                    srcset="{{ article.article_image.url }} 1200w, {{ article.article_image.url }} 300w, {{ article.article_image.url }} 768w, {{ article.article_image.url }} 1024w" sizes="(max-width: 350px) 100vw, 350px" />
+                </a>
+                <div class="shapely-related-post-title">
+                    <a href="{% url 'article_view' article.slug %}">{{ article.title }}</a>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+    </article>
+    </div>
+    <aside id="secondary" class="widget-area col-md-4" role="complementary">
+
+    <div id="top-posts-4" class="widget widget_top-posts">
+        <h2 class="widget-title">Top Articles</h2>
+        <ul class='widgets-list-layout no-grav'>
+            {% for article in top_articles %}
+            <li>
+                <a href="{% url 'article_view' article.slug %}" title="{{ article.title }}" class="bump-view" data-bump-view="tp">
+                    <img width="40" height="40" src="{{ article.article_image.url }}" alt="Template: More Tag" data-pin-nopin="true" class="widgets-list-layout-blavatar" />
+                </a>
+                <div class="widgets-list-layout-links" style="position: relative; right: 40px;">
+                    <a href="{% url 'article_view' article.slug %}" title="{{ article.title }}" class="bump-view" data-bump-view="tp">{{ article.title }}</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="recent-posts-2" class="widget widget_recent_entries">
+    <h2 class="widget-title">Recent Posts</h2>
+        <ul>
+            {% for article in recent_articles %}
+            <li>
+                <a href="{% url 'article_view' article.slug %}">{{ article.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="categories-2" class="widget widget_categories"><h2 class="widget-title">Categories</h2>
+        <ul>
+            {% for category in categories %}
+            <li class="cat-item cat-item-19">
+                <a href="" title="{{ category.title }}">{{ category.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    </aside>
+    </div>
+    </div>
+    </section>
+    <div class="footer-callout">
+    </div>
+    </div>
+
+{% endblock %}

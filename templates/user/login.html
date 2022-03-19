@@ -1,0 +1,89 @@
+{% extends 'user/register.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+
+{% block content %}
+
+<title>{% block title %} BIO-SALAD | Login {% endblock %}</title>
+
+	<header>
+		<div class="navbar py-1">
+			<div class="container">
+				<div class="navbar-brand">
+					<a href="{% url 'home' %}" class="custom-logo-link"><img height="auto" width="150" src="/static/images/hd-logo.png" alt="Logo"></a> 
+				</div>
+				<div class="right-menu">
+					<a href="{% url 'register' %}" class="nav-link" style="font-family: 'RocknRoll One', sans-serif; font-size: 16px;"><i class="fas fa-user-plus"></i> Sign Up </a>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+                <form class="login100-form validate-form flex-sb flex-w" action="{% url 'login_view' %}" method="POST">
+                    {% csrf_token %}
+                    <span class="login100-form-title p-b-32">
+                        Login
+                    </span>
+
+                    <!--<span class="txt1 p-b-11">
+                        Username
+                    </span>-->
+                    <div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+                        <input class="input100" type="text" name="username" placeholder="Username">
+                        <span class="focus-input100"></span>
+                    </div>
+                    
+                    <!--<span class="txt1 p-b-11">
+                        Confirm Password
+                    </span>-->
+                    <div class="wrap-input100 validate-input m-b-36" data-validate = "Password is required">
+                        <span class="btn-show-pass">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                        <input class="input100" type="password" name="password" placeholder="Enter your password">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    {% if messages %}
+						{% for message in messages %}
+                            {% if "login" in message.tags %}
+                            <div role="alert" class="alert alert-danger {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+                            {% endif %}
+						{% endfor %}
+					{% endif %}
+
+                    <div class="social-login" style="position: relative; bottom: 35px; width: 100%; top: 0px;">
+						<div class="divider" style="text-align: center; padding-bottom: 20px;">
+							<p>or</p>
+						</div>
+						<div class="form-group">
+							<a href="{% provider_login_url "google" %}" type="button" class="btn btn-block border">
+								<img src="/static/images/google_icon.svg" alt="" height="27" width="27" style="padding-right: 7px; padding-bottom: 3px;">
+								<p style="display: inline-block;">Continue with Google</p>
+							</a>
+						</div>
+					</div>
+                    
+                    <div class="flex-sb-m w-full p-b-48">
+                        <div>
+                            <a href="{% url 'password_reset' %}" class="txt3">
+                                Forgot Password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Login
+                        </button>
+                    </div>
+
+                </form>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
