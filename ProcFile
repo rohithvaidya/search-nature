@@ -1,1 +1,1 @@
-web: gunicorn nature-print.wsgi
+web: gunicorn nature-clone.wsgi
